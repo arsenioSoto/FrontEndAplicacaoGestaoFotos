@@ -1,0 +1,75 @@
+<form [formGroup]="signupForm" class="form mt-4">
+    <div class="form-group">
+        <input formControlName="email" class="form-control" placeholder="email" autofocus title="Digite o seu e-mail">
+        <ap-vmessage
+            *ngIf="signupForm.get('email').errors?.required"
+            text="Email Requerido!">
+        </ap-vmessage>
+        <ap-vmessage
+            *ngIf="signupForm.get('email').errors?.email"
+            text="Email Invalido">
+        </ap-vmessage>
+    </div>
+
+    <div class="form-group">
+        <input formControlName="fullName" class="form-control" placeholder="Nome Completo" title="Digite o seu Nome">
+        <ap-vmessage
+            *ngIf="signupForm.get('fullName').errors?.required"
+            text="Nome Completo Requerido!">
+        </ap-vmessage>
+        <ap-vmessage
+            *ngIf="signupForm.get('fullName').errors?.minlength"
+            text="Minimo eh 2">
+        </ap-vmessage>
+        <ap-vmessage
+            *ngIf="signupForm.get('fullName').errors?.maxlength"
+            text="Maximo eh 40">
+        </ap-vmessage>
+    </div>
+
+    <div class="form-group">
+        <input formControlName="userName" class="form-control" placeholder="Nome do Usuario" title="Digite o seu Nome do Usuario">
+        <ap-vmessage
+            *ngIf="signupForm.get('userName').errors?.required"
+            text="Nome do Usuario Requerido!">
+        </ap-vmessage>
+        <ap-vmessage
+            *ngIf="signupForm.get('userName').errors?.minlength"
+            text="Minimo eh 2">
+        </ap-vmessage>
+        <ap-vmessage
+            *ngIf="signupForm.get('userName').errors?.maxlength"
+            text="Maximo eh 30">
+        </ap-vmessage>
+        <ap-vmessage
+            *ngIf="signupForm.get('userName').errors?.lowercase"
+            text="Must be lowercase">
+        </ap-vmessage>
+
+        <ap-vmessage
+            text="Username already taken"
+            *ngIf="signupForm.get('userName').errors?.userNameTaken">
+        </ap-vmessage>
+            <small *ngIf="signupForm.get('userName').valid" class="text-success">User available</small>
+        </div>
+
+    <div class="form-group">
+        <input formControlName="password" type="password" class="form-control" placeholder="Senha" title="Digite a sua Senha">
+        <ap-vmessage
+            *ngIf="signupForm.get('password').errors?.required"
+            text="Senha Requerido!">
+        </ap-vmessage>
+        <ap-vmessage
+            *ngIf="signupForm.get('password').errors?.minlength"
+            text="Minimum length is 8">
+        </ap-vmessage>
+        <ap-vmessage
+            *ngIf="signupForm.get('password').errors?.maxlength"
+            text="Maximum length is 14">
+        </ap-vmessage>
+    </div>
+
+    <button [disabled]="signupForm.invalid || signupForm.pending" class="btn btn-success btn-block" title="Clique para Registrar">Registar</button>
+
+    <p>Already a user? <a [routerLink]="['']" title="Clique para Acessar">Sign In!</a></p>
+</form>

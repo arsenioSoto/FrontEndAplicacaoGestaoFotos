@@ -1,0 +1,38 @@
+<h4 class="text-center">Login</h4>
+
+<form [formGroup]="loginForm" class="form mt-4" (submit)="login()">
+
+    <div class="form-group">
+        <input #userNameInput title="Digite o seu Nome do Usuario"
+            formControlName="userName" 
+            class="form-control" 
+            placeholder="Nome Usuario" 
+            autofocus>
+        <ap-vmessage 
+            *ngIf="loginForm.get('userName').errors?.required"
+            text="Nome do Usuario Requerido!">
+        </ap-vmessage>        
+    </div>
+
+    <div class="form-group">
+        <input title="Digite a sua Senha"
+            formControlName="password" 
+            type="password" 
+            class="form-control" 
+            placeholder="Senha">
+        <ap-vmessage
+            *ngIf="loginForm.get('password').errors?.required"
+            text="Senha do Usuario Requerido!">
+        </ap-vmessage>               
+    </div>
+
+    <button 
+        [disabled]="loginForm.invalid" 
+        type="submit" 
+        class="btn btn-success btn-block" title="Clique para Acessar">
+        Acessar
+    </button>
+
+</form>
+
+<p>Nao eh Usuario?<a>Registra-te Agora</a></p>
